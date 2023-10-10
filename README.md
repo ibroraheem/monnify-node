@@ -1,71 +1,97 @@
-# 🚀 MonnifySDK Documentation 📖
+# 🚀 **MonnifySDK Documentation** 📖
 
-Easily integrate the Monnify payment gateway into your Node.js application using the MonnifySDK.
+Integrate the Monnify payment gateway seamlessly with Node.js applications using the MonnifySDK.
 
-![version](https://img.shields.io/badge/version-1.0.0-green)
+![version](https://img.shields.io/badge/version-1.0.1-green)
 ![npm](https://img.shields.io/badge/npm-compatible-brightgreen)
 ![monnify](https://img.shields.io/badge/monnify-supported-blue)
 
-## 📌 Table of Contents
+## 📌 **Table of Contents**
 
-1. 📦 Installation
-2. ⚙️ Initialization
-3. 🛠️ Methods
-4. ❗ Error Handling
+- [🚀 **MonnifySDK Documentation** 📖](#-monnifysdk-documentation-)
+  - [📌 **Table of Contents**](#-table-of-contents)
+  - [📦 **Installation**](#-installation)
+  - [⚙️ **Initialization**](#️-initialization)
+  - [🛠️ **Core Methods**](#️-core-methods)
+    - [1. `initializeTransaction()`](#1-initializetransaction)
+  - [❗ **Error Handling**](#-error-handling)
+  - [🔚 **Conclusion**](#-conclusion)
 
-## 📦 Installation
+---
 
-To get started with the MonnifySDK, install it via npm:
+## 📦 **Installation**
 
 ```bash
 npm install monnify-sdk
 ```
 
-## ⚙️ Initialization
+## ⚙️ **Initialization**
 
-Import and initialize the SDK:
+After installation, initialize the SDK with your Monnify credentials.
 
 ```javascript
 const MonnifySDK = require('monnify-sdk');
 const sdk = new MonnifySDK(apiKey, secretKey, contractCode, baseUrl);
 ```
 
-🔑 Where:
+**Parameters**:
 
-- `apiKey`: Your Monnify API key.
-- `secretKey`: Your Monnify secret key.
-- `contractCode`: Your unique Monnify contract code.
-- `baseUrl`: Monnify's API base URL.
+- `apiKey`: The Monnify API key assigned to your account.
+- `secretKey`: Your confidential Monnify secret.
+- `contractCode`: Your business's unique Monnify code.
+- `baseUrl`: Base endpoint for Monnify's API.
 
-## 🛠️ Methods
+## 🛠️ **Core Methods**
 
-### i. initializeTransaction
+### 1. `initializeTransaction()`
 
-Initialize a payment transaction:
+Begin a payment transaction:
 
 ```javascript
-const result = await sdk.initializeTransaction(1000, "John Doe", "johndoe@example.com", "Payment for Order #123", "https://your-merchant-url.com/callback", "NGN");
+const result = await sdk.initializeTransaction(amount, customerName, customerEmail, paymentDescription, merchantUrl, currencyCode);
 ```
 
 **Parameters**:
 
-- ... [as before] ...
+- ... [like before] ...
 
-[... Continue for all other methods ...]
+**Successful Response**:
 
-## ❗ Error Handling
+```javascript
+{
+    status: 'success',
+    checkoutUrl: [URL to redirect the user for completing the payment]
+}
+```
 
-All methods return promises. Handle potential errors:
+**Error Response**:
+
+```javascript
+{
+    status: 'error',
+    message: [Error message explaining the issue]
+}
+```
+
+... *(Detail out the parameters, successful response, and error response for all the other methods, similar to the above format)* ...
+
+## ❗ **Error Handling**
+
+While the SDK is built to handle many scenarios, some unexpected situations can still arise. It's important to handle errors gracefully:
 
 ```javascript
 try {
     const response = await sdk.initializeTransaction(...params);
-    // Handle response
+    if(response.status === "success") {
+        // Successful handling code here
+    } else {
+        // Handle potential errors or issues
+    }
 } catch (error) {
-    console.error(error.message);
+    console.error("Encountered an error:", error.message);
 }
 ```
 
-## 🔚 Conclusion
+## 🔚 **Conclusion**
 
-MonnifySDK makes Monnify integration 🍰 piece of cake! Always refer to Monnify's official documentation for updates or more details.
+With `MonnifySDK`, integrating Monnify's payment solutions into your Node.js projects becomes a breeze. Whenever in doubt, lean on this documentation, and always check Monnify's official resources for the latest updates.
