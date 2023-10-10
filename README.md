@@ -22,7 +22,7 @@ Integrate the Monnify payment gateway seamlessly with Node.js applications using
 ## 📦 **Installation**
 
 ```bash
-npm install monnify-sdk
+npm install monnify-node
 ```
 
 ## ⚙️ **Initialization**
@@ -30,7 +30,7 @@ npm install monnify-sdk
 After installation, initialize the SDK with your Monnify credentials.
 
 ```javascript
-const MonnifySDK = require('monnify-sdk');
+const MonnifySDK = require('monnify-node');
 const sdk = new MonnifySDK(apiKey, secretKey, contractCode, baseUrl);
 ```
 
